@@ -1,0 +1,11 @@
+python3 mcp_ops_cli.py \
+  --tool list_branches \
+  --args-json '{"owner":"Lokesh35-finance","repo":"Sample","perPage":100,"page":1}' \
+  --intent 'First line: branches:<count>. Then: name | commit:<sha> | protected:<bool>'
+
+
+
+python3 mcp_ops_cli.py \
+  --tool search_repositories \
+  --args-json '{"query":"user:Lokesh35-finance is:public","perPage":50,"page":1}' \
+  --intent 'one per line: owner/name | language | updated | desc'
