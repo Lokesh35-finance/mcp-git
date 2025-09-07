@@ -24,19 +24,6 @@ readme = """
 
 Drop this `scripts/` folder into any Git repository to speed up common maintenance tasks.
 
-## What's inside
-
-- **git-clean-merged-branches.sh** — Delete local/remote branches already merged into the default branch.
-- **git-find-large-files.sh** — Find large Git blobs (e.g., trim repo bloat).
-- **git-sync-fork.sh** — Rebase your fork from the upstream default branch.
-- **release-bump.sh** — Bump semantic version in `VERSION`, tag, and push.
-- **changelog-from-conventional.sh** — Generate a simple Markdown changelog from conventional commits since the last tag.
-- **gh-protect-branch.py** — Enable branch protection using the GitHub API.
-- **gh-pr-create.sh** — Create a PR via the `gh` CLI or GitHub REST API.
-- **repo-audit.py** — Quick repo audit: default branch, contributors, file types, etc.
-
-## Quick start
-
 ```bash
 # From inside your git repo:
 cp -r ./github-repo-scripts/scripts ./
