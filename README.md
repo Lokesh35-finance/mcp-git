@@ -1,8 +1,24 @@
-# Now, between New York (EDT/EST) and India (IST)
-python3 tz_diff.py --from now --src America/New_York --dst Asia/Kolkata
+# MCP GitHub Agent
 
-# A specific timestamp interpreted in the source TZ
-python3 tz_diff.py --from "2025-08-17 10:00" --src America/New_York --dst Asia/Kolkata
+An intelligent GitHub assistant powered by MCP (Model Context Protocol) that can explore repositories, analyze files, and generate refined follow-up questions automatically.
 
-# Just check current offset difference between two zones
-python3 tz_diff.py --src Europe/London --dst Asia/Kolkata
+## 🚀 Features
+- **MCP Tool Invocations**  
+  - `get_file_contents` → Fetch exact contents of files.  
+  - `list_files_recursive` → Traverse entire repo structures recursively.  
+  - `list_branches` → Explore branch structures.  
+  - `search_repositories` → Find repositories using advanced search queries.  
+
+- **Next Question Generation**  
+  Automatically proposes a context-aware follow-up question after each MCP command to guide further analysis.  
+
+- **Dependency Extraction**  
+  Detects imports, functions, and cross-file references.  
+  Summarizes file logic in concise sentences.  
+
+- **Content Normalization**  
+  Handles user variations like *"fetch/print/show/open/display file"* and always returns the raw file content when requested.  
+
+## 📂 Example Usage
+### 1. Fetch file contents
+**User:**  
