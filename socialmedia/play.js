@@ -1,46 +1,53 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Play Video with JS</title>
-  <style>
-    body { font-family: Arial, sans-serif; text-align: center; background: #f0f2f5; }
-    video { width: 70%; margin-top: 20px; border: 2px solid #333; border-radius: 10px; }
-    button { margin: 10px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; background: #1877f2; color: #fff; }
-  </style>
-</head>
-<body>
-  <h2>Video Player (JavaScript Example)</h2>
+// play.js
+function renderMedia(containerId) {
+  const container = document.getElementById(containerId);
+  const files = JSON.parse(localStorage.getItem("mediaFiles")) || [];
 
-  <video id="myVideo" controls>
-    <source src="sample.mp4" type="video/mp4">
-    Your browser does not support HTML5 video.
-  </video>
-  <br>
+  if (!files.length) {
+    container.innerHTML = "<p>No files uploaded yet.</p>";
+    return;
+  }
 
-  <button onclick="playVideo()">Play</button>
-  <button onclick="pauseVideo()">Pause</button>
-  <button onclick="stopVideo()">Stop</button>
-  <button onclick="toggleMute()">Mute/Unmute</button>
+  files.forEach(file => {
+    const div = document.createElement("div");
+    div.className = "media-item";
 
-  <script>
-    const video = document.getElementById("myVideo");
-
-    function playVideo() {
-      video.play();
+    if (file.type.startsWith("video")) {
+      div.innerHTML = `
+        <video id="${file.name}" controls>
+          <source src="${file.url}" type="${file.type}">
+        </video><br>
+        <button onclick="playMedia('${file.name}')">Play</button>
+        <button onclick="pauseMedia('${file.name}')">Pause</button>
+        <button onclick="stopMedia('${file.name}')">Stop</button>
+      `;
+    } else if (file.type.startsWith("audio")) {
+      div.innerHTML = `
+        <audio id="${file.name}" controls>
+          <source src="${file.url}" type="${file.type}">
+        </audio><br>
+        <button onclick="playMedia('${file.name}')">Play</button>
+        <button onclick="pauseMedia('${file.name}')">Pause</button>
+        <button onclick="stopMedia('${file.name}')">Stop</button>
+      `;
+    } else if (file.type.startsWith("image")) {
+      div.innerHTML = `<img src="${file.url}" alt="${file.name}" style="max-width:300px;">`;
     }
 
-    function pauseVideo() {
-      video.pause();
-    }
+    container.appendChild(div);
+  });
+}
 
-    function stopVideo() {
-      video.pause();
-      video.currentTime = 0; // Reset to start
-    }
+function playMedia(id) {
+  document.getElementById(id).play();
+}
 
-    function toggleMute() {
-      video.muted = !video.muted;
-    }
-  </script>
-</body>
-</html>
+function pauseMedia(id) {
+  document.getElementById(id).pause();
+}
+
+function stopMedia(id) {
+  const media = document.getElementById(id);
+  media.pause();
+  media.currentTime = 0;
+}
