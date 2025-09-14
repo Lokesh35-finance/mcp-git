@@ -21,4 +21,20 @@ An intelligent GitHub assistant powered by MCP (Model Context Protocol) that can
 
 ## 📂 Example Usage
 ### 1. Fetch file contents
-**User:**  
+**User:**  Fetch the contents of lengthy.py in the root
+
+**Agent Output:**  
+```json
+{
+  "mcp_command": {
+    "parameters": {
+      "tool_name": "get_file_contents",
+      "tool_args": {
+        "owner": "Lokesh35-finance",
+        "repo": "mcp-git",
+        "path": "lengthy.py"
+      }
+    }
+  },
+  "next_question": "Return only the raw code from lengthy.py exactly as stored in the repository."
+}
